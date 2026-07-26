@@ -895,7 +895,7 @@ HTML_TEMPLATE = '''
             SIDHANT CODEX <span>|</span> SOFTWARE ENGINEERING
         </div>
         <div class="helpline">
-            <i class="fas fa-phone"></i> <strong>Helpline: +91 7250008897</strong>
+            <i class="fas fa-envelope"></i> <strong>Support: sidhantgupta815@gmail.com</strong>
         </div>
     </div>
 </div>
@@ -1021,7 +1021,7 @@ HTML_TEMPLATE = '''
             <a href="#"><i class="fas fa-shield-halved"></i> Privacy Policy</a>
             <a href="#"><i class="fas fa-gavel"></i> Terms & Conditions</a>
             <a href="https://t.me/mr_sidhant_2x12" target="_blank"><i class="fas fa-headset"></i> Support</a>
-            <a href="tel:+917250008897"><i class="fas fa-phone"></i> Contact</a>
+            <a href="mailto:sidhantgupta815@gmail.com"><i class="fas fa-envelope"></i> Contact Us</a>
         </div>
         <div class="copyright">
             © 2026 <span class="brand-name">Sidhant Gupta</span> · All Rights Reserved

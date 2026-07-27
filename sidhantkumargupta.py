@@ -1413,10 +1413,11 @@ def view_logs():
         logs = cursor.fetchall()
         conn.close()
 
-        html = "<h2>Search Logs History</h2><table border='1'><tr><th>#</th><th>Number</th><th>Time</th></tr>"
-        for log in logs:
-            html += f"<tr><td>{log[0]}</td><td>{log[1]}</td><td>{log[2]}</td></tr>"
-        html += "</table>"
+html = "<h2>Search Logs History</h2>..."
+for index, log in enumerate(logs, start=1):
+    html += f"<tr><td>{index}</td><td>{log[1]}</td><td>{log[2]}</td></tr>"
+html += "</table>"
+
         return html
     except Exception as e:
         return str(e)

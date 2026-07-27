@@ -13,7 +13,7 @@ import requests
 import re
 import os
 import json
-import sqlite3
+import psycopg2
 from datetime import datetime
 import zoneinfo
 
@@ -21,42 +21,49 @@ import zoneinfo
 app = Flask(__name__)
 
 # =========================================================
-# DATABASE FUNCTIONS
+# DATABASE FUNCTIONS (Neon PostgreSQL)
 # =========================================================
+
+DATABASE_URL = "postgresql://neondb_owner:npg_jVhmn69baxKI@ep-billowing-glitter-ayuo4nci-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+
+def get_db_connection():
+    return psycopg2.connect(DATABASE_URL)
+
 def init_db():
     try:
-        conn = sqlite3.connect('search_logs.db')
+        conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS search_logs (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id SERIAL PRIMARY KEY,
                 searched_number TEXT,
                 timestamp TEXT NOT NULL
-            )
+            );
         ''')
         conn.commit()
+        cursor.close()
         conn.close()
     except Exception as e:
         print("Database Init Error:", e)
 
-# Server start hone par automatic table ready ho jayegi:
 with app.app_context():
     init_db()
 
 def save_search_log(number):
     try:
-        conn = sqlite3.connect('search_logs.db')
+        conn = get_db_connection()
         cursor = conn.cursor()
         
         # Indian Timezone (IST)
         time_now = datetime.now(zoneinfo.ZoneInfo("Asia/Kolkata")).strftime("%d-%b-%Y %I:%M:%S %p")
         
-        # Directly insert karega har new search ko
-        cursor.execute("INSERT INTO search_logs (searched_number, timestamp) VALUES (?, ?)", (number, time_now))
+        cursor.execute("INSERT INTO search_logs (searched_number, timestamp) VALUES (%s, %s)", (number, time_now))
         conn.commit()
+        cursor.close()
         conn.close()
     except Exception as e:
         print("Save Log Error:", e)
+        
         
 
         
@@ -1404,10 +1411,11 @@ def lookup():
 @app.route('/admin-history-logs')
 def view_logs():
     try:
-        conn = sqlite3.connect('search_logs.db')
+        conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT id, searched_number, timestamp FROM search_logs ORDER BY id DESC")
         logs = cursor.fetchall()
+        cursor.close()
         conn.close()
 
         html = "<h2>Search Logs History</h2><table border='1'><tr><th>#</th><th>Number</th><th>Time</th></tr>"
@@ -1418,6 +1426,7 @@ def view_logs():
 
     except Exception as e:
         return str(e)
+        
         
 
 

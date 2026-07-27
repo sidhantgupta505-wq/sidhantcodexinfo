@@ -1409,19 +1409,19 @@ def view_logs():
     try:
         conn = sqlite3.connect('search_logs.db')
         cursor = conn.cursor()
-        cursor.execute("SELECT id, searched_number, timestamp FROM logs ORDER BY id DESC")
+        cursor.execute("SELECT id, searched_number, timestamp FROM search_logs ORDER BY id DESC")
         logs = cursor.fetchall()
         conn.close()
 
-html = "<h2>Search Logs History</h2>..."
-for index, log in enumerate(logs, start=1):
-    html += f"<tr><td>{index}</td><td>{log[1]}</td><td>{log[2]}</td></tr>"
-html += "</table>"
-
+        html = "<h2>Search Logs History</h2><table border='1'><tr><th>#</th><th>Number</th><th>Time</th></tr>"
+        for index, log in enumerate(logs, start=1):
+            html += f"<tr><td>{index}</td><td>{log[1]}</td><td>{log[2]}</td></tr>"
+        html += "</table>"
         return html
+
     except Exception as e:
         return str(e)
-
+        
 
 
 

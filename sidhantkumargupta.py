@@ -18,6 +18,38 @@ from datetime import datetime
 
 
 app = Flask(__name__)
+# ============================================
+# DATABASE FUNCTIONS
+# ============================================
+def init_db():
+    try:
+        conn = sqlite3.connect('search_logs.db')
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS logs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                searched_number TEXT NOT NULL,
+                timestamp TEXT NOT NULL
+            )
+        ''')
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        print("Database Init Error:", e)
+
+init_db()
+
+def save_search_log(number):
+    try:
+        conn = sqlite3.connect('search_logs.db')
+        cursor = conn.cursor()
+        time_now = datetime.now().strftime("%d-%b-%Y %I:%M:%S %p")
+        cursor.execute("INSERT INTO logs (searched_number, timestamp) VALUES (?, ?)", (number, time_now))
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        print("Log Error:", e)
+        
 
 # ============================================
 # API CONFIGURATION

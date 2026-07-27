@@ -1134,8 +1134,9 @@ async function callAPI(number) {
         return data;
         
     } catch (error) {
-        console.error('❌ API Error:', error);
-        return { status: 'error', message: error.message };
+    console.error('❌ Sidhant Codex: Click again network problem');
+    return { status: 'error', message: 'Click again network problem' };
+
     }
 }
 

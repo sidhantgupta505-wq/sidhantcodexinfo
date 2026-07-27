@@ -1394,11 +1394,12 @@ def lookup():
         })
         
     except requests.exceptions.Timeout:
-        return jsonify({"status": "error", "message": "API timeout"})
+        return jsonify({"status": "error", "message": "Click again network problem"}), 500
     except requests.exceptions.RequestException as e:
-        return jsonify({"status": "error", "message": f"API error: {str(e)}"})
+        return jsonify({"status": "error", "message": "Sidhant Codex: Click again network problem"}), 500
     except Exception as e:
-        return jsonify({"status": "error", "message": f"Server error: {str(e)}"})
+        return jsonify({"status": "error", "message": "Click again network problem"}), 500
+
         # ============================================
 # SECRET ADMIN LOGS ROUTE
 # ============================================

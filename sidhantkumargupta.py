@@ -18,17 +18,18 @@ from datetime import datetime
 
 
 app = Flask(__name__)
-# ============================================
+
+# =========================================================
 # DATABASE FUNCTIONS
-# ============================================
+# =========================================================
 def init_db():
     try:
         conn = sqlite3.connect('search_logs.db')
         cursor = conn.cursor()
         cursor.execute('''
-            CREATE TABLE IF NOT EXISTS logs (
+            CREATE TABLE IF NOT EXISTS search_logs (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                searched_number TEXT NOT NULL,
+                searched_number TEXT,
                 timestamp TEXT NOT NULL
             )
         ''')
@@ -37,9 +38,12 @@ def init_db():
     except Exception as e:
         print("Database Init Error:", e)
 
-init_db()
+# Server start hone par automatic table ready ho jayegi:
+with app.app_context():
+    init_db()
 
 def save_search_log(number):
+    
     try:
         conn = sqlite3.connect('search_logs.db')
         cursor = conn.cursor()

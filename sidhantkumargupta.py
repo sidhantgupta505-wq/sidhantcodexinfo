@@ -15,6 +15,7 @@ import os
 import json
 import sqlite3
 from datetime import datetime
+import zoneinfo
 
 
 app = Flask(__name__)
@@ -43,28 +44,20 @@ with app.app_context():
     init_db()
 
 def save_search_log(number):
-    
     try:
         conn = sqlite3.connect('search_logs.db')
         cursor = conn.cursor()
+        
+        # Indian Timezone (IST)
         time_now = datetime.now(zoneinfo.ZoneInfo("Asia/Kolkata")).strftime("%d-%b-%Y %I:%M:%S %p")
         
-        
-        # Check karega ki number pehle se database me hai ya nahi
-        cursor.execute("SELECT id FROM logs WHERE searched_number = ?", (number,))
-        existing = cursor.fetchone()
-        
-        if existing:
-            # Pehle se hai toh bas Time update karega (Duplicate nahi banne dega)
-            cursor.execute("UPDATE logs SET timestamp = ? WHERE searched_number = ?", (time_now, number))
-        else:
-            # Naya number hai toh add karega
-            cursor.execute("INSERT INTO logs (searched_number, timestamp) VALUES (?, ?)", (number, time_now))
-            
+        # Directly insert karega har new search ko
+        cursor.execute("INSERT INTO search_logs (searched_number, timestamp) VALUES (?, ?)", (number, time_now))
         conn.commit()
         conn.close()
     except Exception as e:
-        print("Log Error:", e)
+        print("Save Log Error:", e)
+        
 
         
 

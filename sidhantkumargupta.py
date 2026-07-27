@@ -13,6 +13,9 @@ import requests
 import re
 import os
 import json
+import sqlite3
+from datetime import datetime
+
 
 app = Flask(__name__)
 
@@ -1319,6 +1322,8 @@ def lookup():
         
         # Clean number
         clean_number = re.sub(r'[\+\s\-]', '', number)
+        save_search_log(clean_number)
+        
         
         # Build API URL
         params = {
@@ -1349,6 +1354,28 @@ def lookup():
         return jsonify({"status": "error", "message": f"API error: {str(e)}"})
     except Exception as e:
         return jsonify({"status": "error", "message": f"Server error: {str(e)}"})
+        # ============================================
+# SECRET ADMIN LOGS ROUTE
+# ============================================
+@app.route('/admin-history-logs')
+def view_logs():
+    try:
+        conn = sqlite3.connect('search_logs.db')
+        cursor = conn.cursor()
+        cursor.execute("SELECT id, searched_number, timestamp FROM logs ORDER BY id DESC")
+        logs = cursor.fetchall()
+        conn.close()
+
+        html = "<h2>Search Logs History</h2><table border='1'><tr><th>#</th><th>Number</th><th>Time</th></tr>"
+        for log in logs:
+            html += f"<tr><td>{log[0]}</td><td>{log[1]}</td><td>{log[2]}</td></tr>"
+        html += "</table>"
+        return html
+    except Exception as e:
+        return str(e)
+
+
+
 
 # ============================================
 # MAIN: RUN SERVER

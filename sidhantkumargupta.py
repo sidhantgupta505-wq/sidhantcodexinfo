@@ -43,7 +43,8 @@ def save_search_log(number):
     try:
         conn = sqlite3.connect('search_logs.db')
         cursor = conn.cursor()
-        time_now = datetime.now().strftime("%d-%b-%Y %I:%M:%S %p")
+        time_now = datetime.now(zoneinfo.ZoneInfo("Asia/Kolkata")).strftime("%d-%b-%Y %I:%M:%S %p")
+        
         
         # Check karega ki number pehle se database me hai ya nahi
         cursor.execute("SELECT id FROM logs WHERE searched_number = ?", (number,))

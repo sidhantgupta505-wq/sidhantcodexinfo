@@ -1316,10 +1316,10 @@ document.getElementById('phoneInput').addEventListener('input', function(e) {
 // ============================================
 // DISABLE COPY
 // ============================================
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    return false;
-});
+//document.addEventListener('contextmenu', function(e) {
+    //e.preventDefault();
+    //return false;
+//});
 
 document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && (e.key === 'c' || e.key === 's' || e.key === 'p' || e.key === 'u')) {

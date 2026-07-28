@@ -1322,7 +1322,8 @@ document.addEventListener('contextmenu', function(e) {
 });
 
 document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 's' || e.key === 'p' || e.key === 'u')) {
+    if (e.ctrlKey && (e.key === 'c' || e.key === 's' || e.key === 'p' || e.key === 'u')) {
+
         e.preventDefault();
         return false;
     }

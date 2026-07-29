@@ -1457,12 +1457,31 @@ def view_logs():
         cursor.close()
         conn.close()
 
-        html = "<h2>Search Logs History</h2><table border='1'><tr><th>SERIAL-NUMBER</th><th>NUMBER</th><th>TIME</th></tr>"
-        for index, log in enumerate(logs, start=1):
-            html += f"<tr><td>{index}</td><td>{log[1]}</td><td>{log[2]}</td></tr>"
-        html += "</table>"
-        html += '<button onclick="clearhistory()" style="background:#ff4d4d; color:white; padding:8px 15px; border: none; border-radius:5px; cursor:pointer;">Clear History</button>'
-        return html
+     html = f"""
+    <div style="max-width: 600px; margin: 20px auto; font-family: Arial, sans-serif;">
+        <h2 style="text-align: center;">Search Logs History</h2>
+        <table border='1' style="width: 100%; border-collapse: collapse; text-align: center;">
+            <tr style="background-color: #f2f2f2;">
+                <th style="width: 20%; padding: 8px;">S.No</th>
+                <th style="width: 50%; padding: 8px;">Number</th>
+                <th style="width: 30%; padding: 8px;">Time</th>
+            </tr>
+    """
+
+    for index, log in enumerate(logs, start=1):
+        html += f"<tr><td style='padding: 6px;'>{index}</td><td style='padding: 6px;'>{log[1]}</td><td style='padding: 6px;'>{log[2]}</td></tr>"
+
+    html += """
+        </table>
+        <div style="margin-top: 15px; text-align: left;">
+            <button onclick="clearHistory()" style="background: #ff4d4d; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
+                Clear History
+            </button>
+        </div>
+    </div>
+    """
+    
+    return html
 
     except Exception as e:
         return str(e)

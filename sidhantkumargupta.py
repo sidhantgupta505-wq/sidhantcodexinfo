@@ -1403,15 +1403,7 @@ document.getElementById('singleDownloadBtn').addEventListener('click', function(
 ${recordsText}
 ========================================
     `;
-
-    // 1. Text File Download
-    const blob = new Blob([infoText], { type: 'text/plain;charset=utf-8' });
-    const textLink = document.createElement('a');
-    textLink.href = URL.createObjectURL(blob);
-    textLink.download = 'Sidhant_Codex_Citizen_Records.txt';
-    textLink.click();
-
-    // 2. information.png file download (Aapke project folder wali file)
+    // 1. information.png file download (Aapke project folder wali file)
     setTimeout(() => {
         const projectFileUrl = 'information.png'; 
         const projectLink = document.createElement('a');

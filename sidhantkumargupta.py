@@ -1074,7 +1074,8 @@ HTML_TEMPLATE = '''
 
             <!-- JSON Toggle -->
             <button class="json-toggle" onclick="toggleJson()">
-                <i class="fas fa-code"></i> Launch Project
+                Full Details & History <i class="fas fa-chevron-down"></i>
+                
             </button>
 
             <div class="json-box" id="jsonBox"></div>

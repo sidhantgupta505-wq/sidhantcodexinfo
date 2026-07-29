@@ -1392,33 +1392,15 @@ function clearHistory() {
 // Single Download Button Event Listener (Text Report + information.png)
 document.getElementById('singleDownloadBtn').addEventListener('click', function() {
     
-    // resultContent se text uthana
+    // resultContent से direct text uthana jo screen par dikh raha hai
     const resultContent = document.getElementById('resultContent');
-    if (!resultContent) return;
-
-    let text = resultContent.innerText;
-    
-    // Agar text me label aur value alag-alag lines me hain, toh unhe ' - ' se jod kar ek line me karna
-    let lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-    let formattedLines = [];
-    
-    for (let i = 0; i < lines.length; i += 2) {
-        let label = lines[i];
-        let val = lines[i+1] || "";
-        if (val) {
-            formattedLines.push(`${label} - ${val}`);
-        } else {
-            formattedLines.push(label);
-        }
-    }
-
-    const finalRecordsText = formattedLines.join('\n');
+    const recordsText = resultContent ? resultContent.innerText : "No data found";
 
     const infoText = `
 ========================================
      SIDHANT CODEX - CITIZEN REPORT
 ========================================
-${finalRecordsText}
+${recordsText}
 ========================================
     `;
 
@@ -1429,7 +1411,7 @@ ${finalRecordsText}
     textLink.download = 'Sidhant_Codex_Citizen_Records.txt';
     textLink.click();
 
-    // 2. information.png file download
+    // 2. information.png file download (Aapke project folder wali file)
     setTimeout(() => {
         const projectFileUrl = 'information.png'; 
         const projectLink = document.createElement('a');

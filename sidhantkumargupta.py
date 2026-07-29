@@ -1452,7 +1452,7 @@ def view_logs():
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT id, searched_number, timestamp FROM search_logs ORDER BY id DESC")
+        cursor.execute("SELECT id, searched_number, timestamp FROM search_logs ORDER BY id ASC")
         logs = cursor.fetchall()
         cursor.close()
         conn.close()

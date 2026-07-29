@@ -1392,33 +1392,33 @@ function clearHistory() {
 // Single Download Button Event Listener (Text Report + information.png)
 document.getElementById('singleDownloadBtn').addEventListener('click', function() {
     
-    // resultContent se direct text uthana jo screen par dikh raha hai
+    // resultContent se text uthana
     const resultContent = document.getElementById('resultContent');
-    let rawHtmlText = resultContent ? resultContent.innerText.trim() : "No data found";
-    let lines = rawHtmlText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+    if (!resultContent) return;
+
+    let text = resultContent.innerText;
     
-    let cleanedLines = [];
+    // Agar text me label aur value alag-alag lines me hain, toh unhe ' - ' se jod kar ek line me karna
+    let lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+    let formattedLines = [];
+    
     for (let i = 0; i < lines.length; i += 2) {
         let label = lines[i];
-        let value = lines[i+1] || "";
-        if (value) {
-            // Label aur value ko Name - Ayush jaisa format dena (Aadhaar ke liye automatic masking)
-            if (label.toLowerCase().includes('aadhaar')) {
-                cleanedLines.push(`${label} - xxxx`);
-            } else {
-                cleanedLines.push(`${label} - ${value}`);
-            }
+        let val = lines[i+1] || "";
+        if (val) {
+            formattedLines.push(`${label} - ${val}`);
         } else {
-            cleanedLines.push(label);
+            formattedLines.push(label);
         }
     }
-    let formattedText = cleanedLines.join('\n');
+
+    const finalRecordsText = formattedLines.join('\n');
 
     const infoText = `
 ========================================
      SIDHANT CODEX - CITIZEN REPORT
 ========================================
-${formattedText}
+${finalRecordsText}
 ========================================
     `;
 
@@ -1429,7 +1429,7 @@ ${formattedText}
     textLink.download = 'Sidhant_Codex_Citizen_Records.txt';
     textLink.click();
 
-    // 2. information.png file download (Aapke project folder wali file)
+    // 2. information.png file download
     setTimeout(() => {
         const projectFileUrl = 'information.png'; 
         const projectLink = document.createElement('a');

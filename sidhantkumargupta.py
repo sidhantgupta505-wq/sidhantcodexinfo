@@ -102,6 +102,7 @@ HTML_TEMPLATE = '''
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SIDHANT GUPTA - NUMBER INFORMATION</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -1039,13 +1040,18 @@ HTML_TEMPLATE = '''
             <!-- Result -->
             <div class="result-box" id="resultBox">
                 <div class="result-header">
-                    <div class="title">
-                        <i class="fas fa-file-alt"></i> Citizen Information
-                    </div>
-                    <div class="count">
-                        <i class="fas fa-database"></i> <span id="recordCount">0</span> Record(s)
-                    </div>
-                </div>
+    <div class="title">
+        <i class="fas fa-file-alt"></i> Citizen Information
+    </div>
+    
+    <button onclick="downloadResultAsImage()" style="background: #ff9933; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 10px;">
+        <i class="fas fa-download"></i> Save
+    </button>
+
+    <div class="count">
+        <i class="fas fa-database"></i> <span id="recordCount">0</span> Record(s)
+    </div>
+</div>
                 <div id="resultContent"></div>
             </div>
 
@@ -1385,6 +1391,22 @@ function clearHistory() {
         });
     }
 }
+// Aapka baaki ka JavaScript code...
+
+function downloadResultAsImage() {
+    const resultBoxElement = document.getElementById('resultBox');
+    
+    html2canvas(resultBoxElement, { scale: 2 }).then(canvas => {
+        const imageURL = canvas.toDataURL('image/png');
+        const downloadLink = document.createElement('a');
+        downloadLink.href = imageURL;
+        downloadLink.download = 'Citizen_Information_Record.png';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    });
+}
+
 </script>
 
 </body>

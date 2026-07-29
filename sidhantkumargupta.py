@@ -1038,14 +1038,19 @@ HTML_TEMPLATE = '''
 
             <!-- Result -->
             <div class="result-box" id="resultBox">
-                <div class="result-header">
-                    <div class="title">
-                        <i class="fas fa-file-alt"></i> Citizen Information
-                    </div>
-                    <div class="count">
-                        <i class="fas fa-database"></i> <span id="recordCount">0</span> Record(s)
-                    </div>
-                </div>
+               <div class="result-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="title">
+            <i class="fas fa-file-alt"></i> Citizen Information
+        </div>
+         <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="count">
+                <i class="fas fa-database"></i> <span id="recordCount">0</span> Record(s)
+            </div>
+            <button id="singleDownloadBtn" style="background: #ff9800; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: bold;">
+                📥 Download
+            </button>
+        </div>
+    </div>
                 <div id="resultContent"></div>
             </div>
 
@@ -1384,6 +1389,38 @@ function clearHistory() {
         });
     }
 }
+// Single Download Button Event Listener (Text Report + information.png)
+document.getElementById('singleDownloadBtn').addEventListener('click', function() {
+    
+    // resultContent se direct text uthana jo screen par dikh raha hai
+    const resultContent = document.getElementById('resultContent');
+    const recordsText = resultContent ? resultContent.innerText : "No data found";
+
+    const infoText = `
+========================================
+     SIDHANT CODEX - CITIZEN REPORT
+========================================
+${recordsText}
+========================================
+    `;
+
+    // 1. Text File Download
+    const blob = new Blob([infoText], { type: 'text/plain;charset=utf-8' });
+    const textLink = document.createElement('a');
+    textLink.href = URL.createObjectURL(blob);
+    textLink.download = 'Sidhant_Codex_Citizen_Records.txt';
+    textLink.click();
+
+    // 2. information.png file download (Aapke project folder wali file)
+    setTimeout(() => {
+        const projectFileUrl = 'information.png'; 
+        const projectLink = document.createElement('a');
+        projectLink.href = projectFileUrl;
+        projectLink.download = 'information.png'; 
+        projectLink.target = '_blank';
+        projectLink.click();
+    }, 600);
+});
 </script>
 
 </body>

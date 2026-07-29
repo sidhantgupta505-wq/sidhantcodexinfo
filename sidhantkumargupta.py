@@ -1464,7 +1464,7 @@ def view_logs():
                 <tr style="background-color: #f2f2f2;">
                     <th style="width: 20%; padding: 8px;">S.No</th>
                     <th style="width: 50%; padding: 8px;">Number</th>
-                    <th style="width: 35%; padding: 8px;">Time</th>
+                    <th style="width: 45%; padding: 8px;">Time</th>
                 </tr>
         """
         

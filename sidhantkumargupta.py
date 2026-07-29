@@ -1462,9 +1462,9 @@ def view_logs():
             <h2 style="text-align: center;">Search Logs History</h2>
             <table border='1' style="width: 100%; border-collapse: collapse; text-align: center;">
                 <tr style="background-color: #f2f2f2;">
-                    <th style="width: 15%; padding: 14px;">S.No</th>
-                    <th style="width: 35%; padding: 14px;">Number</th>
-                    <th style="width: 50%; padding: 14px;">Time</th>
+                    <th style="width: 20%; padding: 8px;">S.No</th>
+                    <th style="width: 50%; padding: 8px;">Number</th>
+                    <th style="width: 40%; padding: 8px;">Time</th>
                 </tr>
         """
         

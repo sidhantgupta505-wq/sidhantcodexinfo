@@ -1296,7 +1296,7 @@ async function searchNumber() {
             statusText.textContent = '❌ API Error';
             statusDot.className = 'dot error';
         } else {
-            statusText.textContent = 'Please Contact On Sidhant';
+            statusText.textContent = '❌ Please Contact On Sidhant';
             statusDot.className = 'dot error';
         }
         

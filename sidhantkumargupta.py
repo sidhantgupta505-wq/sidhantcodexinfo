@@ -1393,18 +1393,57 @@ function clearHistory() {
 }
 // Aapka baaki ka JavaScript code...
 
-function downloadResultAsImage() {
-    const resultBoxElement = document.getElementById('resultBox');
-    
-    html2canvas(resultBoxElement, { scale: 2 }).then(canvas => {
-        const imageURL = canvas.toDataURL('image/png');
-        const downloadLink = document.createElement('a');
-        downloadLink.href = imageURL;
-        downloadLink.download = 'Citizen_Information_Record.png';
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-    });
+function downloadCustomCard() {
+    // Wahi data fetch karein jo result box me mojood hai
+    let docId = document.getElementById('docIdSpan')?.innerText || "N/A";
+    let name = document.getElementById('nameSpan')?.innerText || "N/A";
+    let fatherName = document.getElementById('fatherSpan')?.innerText || "N/A";
+    let address = document.getElementById('addressSpan')?.innerText || "N/A";
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 800;
+    canvas.height = 1200;
+    const ctx = canvas.getContext('2d');
+
+    // Background Color
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Text Printing (Dynamic data ke sath)
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '20px Arial';
+    ctx.fillText("Document", 50, 80);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 28px Arial';
+    ctx.fillText(docId, 50, 120);
+
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '20px Arial';
+    ctx.fillText("Name", 50, 180);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 26px Arial';
+    ctx.fillText(name, 50, 220);
+
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '20px Arial';
+    ctx.fillText("Father-name", 50, 280);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 26px Arial';
+    ctx.fillText(fatherName, 50, 320);
+
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '20px Arial';
+    ctx.fillText("Address", 50, 380);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '22px Arial';
+    // Address lamba ho sakta hai, isliye yahan print hoga
+    ctx.fillText(address, 50, 420);
+
+    // Direct Download
+    const link = document.createElement('a');
+    link.download = name + '_Record.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
 }
 
 </script>

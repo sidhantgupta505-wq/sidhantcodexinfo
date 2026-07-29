@@ -1461,7 +1461,7 @@ def view_logs():
         for index, log in enumerate(logs, start=1):
             html += f"<tr><td>{index}</td><td>{log[1]}</td><td>{log[2]}</td></tr>"
         html += "</table>"
-       html += '<button onclick="clearhistory()" style="background:#ff4d4d; color:white; padding:8px 15px; border: none; border-radius:5px; cursor:pointer;">Clear History</button>'
+        html += '<button onclick="clearhistory()" style="background:#ff4d4d; color:white; padding:8px 15px; border: none; border-radius:5px; cursor:pointer;">Clear History</button>'
         return html
 
     except Exception as e:

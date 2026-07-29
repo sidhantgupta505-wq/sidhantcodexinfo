@@ -1392,33 +1392,76 @@ function clearHistory() {
 // Single Download Button Event Listener (Text Report + information.png)
 document.getElementById('singleDownloadBtn').addEventListener('click', function() {
     
-    // resultContent se direct text uthana jo screen par dikh raha hai
+    // Webpage ke resultContent se text uthana aur formatting karna
     const resultContent = document.getElementById('resultContent');
-    const recordsText = resultContent ? resultContent.innerText : "No data found";
-
-    const infoText = `
-========================================
-     SIDHANT CODEX - CITIZEN REPORT
-========================================
-${recordsText}
-========================================
-    `;
+    let rawHtmlText = resultContent ? resultContent.innerText.trim() : "No data found";
+    let lines = rawHtmlText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+    
+    let cardsHTML = "";
+    for (let i = 0; i < lines.length; i += 2) {
+        let label = lines[i];
+        let value = lines[i+1] || "";
+        if (value) {
+            // Har ek field ke liye alag alag container (card) banana
+            cardsHTML += `
+                <div style="background: #111b2b; border: 1px solid #1e293b; border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                    <div style="font-size: 12px; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px;">${label}</div>
+                    <div style="font-size: 15px; color: #ffffff; font-weight: bold; word-break: break-all;">${value}</div>
+                </div>
+            `;
+        }
+    }
 
     // 1. Text File Download
-    const blob = new Blob([infoText], { type: 'text/plain;charset=utf-8' });
+    let plainTextReport = `========================================\n     SIDHANT CODEX - CITIZEN REPORT\n========================================\n\n` + rawHtmlText + `\n\n========================================`;
+    const textBlob = new Blob([plainTextReport], { type: 'text/plain;charset=utf-8' });
     const textLink = document.createElement('a');
-    textLink.href = URL.createObjectURL(blob);
+    textLink.href = URL.createObjectURL(textBlob);
     textLink.download = 'Sidhant_Codex_Citizen_Records.txt';
     textLink.click();
 
-    // 2. information.png file download (Aapke project folder wali file)
+    // 2. Styled Print / PDF Window (Dark Background + Separate Containers)
     setTimeout(() => {
-        const projectFileUrl = 'information.png'; 
-        const projectLink = document.createElement('a');
-        projectLink.href = projectFileUrl;
-        projectLink.download = 'information.png'; 
-        projectLink.target = '_blank';
-        projectLink.click();
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <html>
+                <head>
+                    <title>Sidhant Codex - Citizen Report</title>
+                    <style>
+                        body { 
+                            font-family: Arial, sans-serif; 
+                            padding: 20px; 
+                            background: #090d16; 
+                            color: #ffffff; 
+                            margin: 0;
+                        }
+                        .container {
+                            max-width: 500px;
+                            margin: auto;
+                        }
+                        h2 {
+                            text-align: center;
+                            color: #38bdf8;
+                            font-size: 18px;
+                            margin-bottom: 20px;
+                            letter-spacing: 1px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <h2>SIDHANT CODEX - CITIZEN REPORT</h2>
+                        ${cardsHTML}
+                    </div>
+                    <script>
+                        window.onload = function() {
+                            window.print();
+                        }
+                    </script>
+                </body>
+            </html>
+        `);
+        printWindow.document.close();
     }, 600);
 });
 </script>

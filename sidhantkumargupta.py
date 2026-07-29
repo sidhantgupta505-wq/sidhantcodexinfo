@@ -1237,6 +1237,7 @@ function displayResults(number, data) {
         
         resultContent.innerHTML = html;
         resultBox.classList.add('show');
+        toggleJson();
         document.getElementById('errorText').classList.remove('show');
         
         let apiHtml = '';

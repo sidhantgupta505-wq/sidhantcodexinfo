@@ -64,7 +64,25 @@ def save_search_log(number):
     except Exception as e:
         print("Save Log Error:", e)
         
+  # ==========================================
+# CLEAR SEARCH LOGS ROUTE
+# ==========================================
+@app.route('/clear-logs', methods=['POST'])
+def clear_logs():
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
         
+        # Database se saare search logs delete karne ki query
+        cursor.execute("DELETE FROM search_logs;")
+        conn.commit()
+        
+        cursor.close()
+        conn.close()
+        
+        return jsonify({"status": "success", "message": "History cleared successfully"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})      
 
         
 
@@ -1346,6 +1364,26 @@ document.addEventListener('DOMContentLoaded', function() {
         searchNumber();
     }, 1500);
 });
+
+function clearHistory() {
+    if (confirm("Kya aap sach me saari history delete karna chahte hain?")) {
+        fetch('/clear-logs', {
+            method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.status === 'success') {
+                alert("History deleted successfully!");
+                location.reload(); 
+            } else {
+                alert("Error deleting history!");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+}
 </script>
 
 </body>
@@ -1419,10 +1457,11 @@ def view_logs():
         cursor.close()
         conn.close()
 
-        html = "<h2>Search Logs History</h2><table border='1'><tr><th>#</th><th>Number</th><th>Time</th></tr>"
+        html = "<h2>Search Logs History</h2><table border='1'><tr><th>SERIAL-NUMBER</th><th>NUMBER</th><th>TIME</th></tr>"
         for index, log in enumerate(logs, start=1):
             html += f"<tr><td>{index}</td><td>{log[1]}</td><td>{log[2]}</td></tr>"
         html += "</table>"
+        <button onclick="clearhistory()" style="background:#ff4d4d; color:white; padding:8px 15px; border: none; border-radius:5px; cursor:pointer;">
         return html
 
     except Exception as e:

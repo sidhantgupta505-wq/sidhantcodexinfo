@@ -1463,8 +1463,8 @@ def view_logs():
             <table border='1' style="width: 100%; border-collapse: collapse; text-align: center;">
                 <tr style="background-color: #f2f2f2;">
                     <th style="width: 20%; padding: 8px;">S.No</th>
-                    <th style="width: 30%; padding: 8px;">Number</th>
-                    <th style="width: 55%; padding: 8px;">Time</th>
+                    <th style="width: 50%; padding: 8px;">Number</th>
+                    <th style="width: 35%; padding: 8px;">Time</th>
                 </tr>
         """
         

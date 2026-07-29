@@ -1394,13 +1394,31 @@ document.getElementById('singleDownloadBtn').addEventListener('click', function(
     
     // resultContent se direct text uthana jo screen par dikh raha hai
     const resultContent = document.getElementById('resultContent');
-    const recordsText = resultContent ? resultContent.innerText : "No data found";
+    let rawHtmlText = resultContent ? resultContent.innerText.trim() : "No data found";
+    let lines = rawHtmlText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+    
+    let cleanedLines = [];
+    for (let i = 0; i < lines.length; i += 2) {
+        let label = lines[i];
+        let value = lines[i+1] || "";
+        if (value) {
+            // Label aur value ko Name - Ayush jaisa format dena (Aadhaar ke liye automatic masking)
+            if (label.toLowerCase().includes('aadhaar')) {
+                cleanedLines.push(`${label} - xxxx`);
+            } else {
+                cleanedLines.push(`${label} - ${value}`);
+            }
+        } else {
+            cleanedLines.push(label);
+        }
+    }
+    let formattedText = cleanedLines.join('\n');
 
     const infoText = `
 ========================================
      SIDHANT CODEX - CITIZEN REPORT
 ========================================
-${recordsText}
+${formattedText}
 ========================================
     `;
 

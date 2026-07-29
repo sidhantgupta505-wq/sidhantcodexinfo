@@ -1457,7 +1457,7 @@ def view_logs():
         cursor.close()
         conn.close()
 
-        html = f"""
+        html = """
         <div style="max-width: 600px; margin: 20px auto; font-family: Arial, sans-serif;">
             <h2 style="text-align: center;">Search Logs History</h2>
             <table border='1' style="width: 100%; border-collapse: collapse; text-align: center;">
@@ -1467,14 +1467,27 @@ def view_logs():
                     <th style="width: 30%; padding: 8px;">Time</th>
                 </tr>
         """
-
+        
         for index, log in enumerate(logs, start=1):
             html += f"<tr><td style='padding: 6px;'>{index}</td><td style='padding: 6px;'>{log[1]}</td><td style='padding: 6px;'>{log[2]}</td></tr>"
-
+        
         html += """
             </table>
             <div style="margin-top: 15px; text-align: left;">
-                <button onclick="clearHistory()" style="background: #ff4d4d; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
+                <button onclick="
+                    if(confirm('Kya aap sach me saari history delete karna chahte hain?')) {
+                        fetch('/clear-logs', { method: 'POST' })
+                        .then(res => res.json())
+                        .then(data => {
+                            if(data.status === 'success') {
+                                alert('History deleted successfully!');
+                                location.reload();
+                            } else {
+                                alert('Error deleting history!');
+                            }
+                        });
+                    }
+                " style="background: #ff4d4d; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
                     Clear History
                 </button>
             </div>
@@ -1485,7 +1498,6 @@ def view_logs():
 
     except Exception as e:
         return str(e)        
-        
 
 
 

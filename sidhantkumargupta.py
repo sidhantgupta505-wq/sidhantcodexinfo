@@ -28,7 +28,7 @@ DATABASE_URL = "postgresql://neondb_owner:npg_jVhmn69baxKI@ep-billowing-glitter-
 
 def get_db_connection():
     return psycopg2.connect(DATABASE_URL)
-
+ 
 def init_db():
     try:
         conn = get_db_connection()
@@ -1175,7 +1175,23 @@ function displayResults(number, data) {
     const apiInfo = document.getElementById('apiInfo');
     const jsonBox = document.getElementById('jsonBox');
     
-    jsonBox.textContent = JSON.stringify(data, null, 2);
+    //jsonBox.textContent = JSON.stringify(data, null, 2);
+    //jsonBox.textContent = JSON.stringify(data, null, 2);
+
+let history = '';
+
+data.result.forEach((info, index) => {
+    history += `--------------------\n`;
+    history += `Document: ${index + 1}\n`;
+    history += `Phone: ${info.num || '+91 ' + number}\n`;
+    history += `Name: ${info.name || 'N/A'}\n`;
+    history += `Father-name: ${info.fname || 'N/A'}\n`;
+    history += `Aadhaar: ${info.aadhar || 'N/A'}\n`;
+    history += `Address: ${info.address || 'N/A'}\n`;
+    history += `Network Circle: ${info.circle || 'N/A'}\n\n`;
+});
+
+jsonBox.textContent = history;
     
     if (data.status === 'error') {
         resultBox.classList.remove('show');

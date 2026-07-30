@@ -1178,20 +1178,23 @@ function displayResults(number, data) {
     //jsonBox.textContent = JSON.stringify(data, null, 2);
     //jsonBox.textContent = JSON.stringify(data, null, 2);
 //Ye CODE JSON BOX KA HAI
+
 let history = '';
 
 data.result.forEach((info, index) => {
+    history += `╔════════════════════════════╗\n`;
+    history += `║      📄 DOCUMENT ${index + 1}      ║\n`;
+    history += `╚════════════════════════════╝\n\n`;
 
-    history += `<i class="fas fa-file-alt"></i> <b>Document ${index + 1}</b><br>`;
-    history += `<i class="fas fa-phone"></i> Phone: ${info.num || '+91 ' + number}<br>`;
-    history += `<i class="fas fa-user"></i> Full Name: ${info.name || 'N/A'}<br>`;
-    history += `<i class="fas fa-user-tie"></i> Father's Name: ${info.fname || 'N/A'}<br>`;
-    history += `<i class="fas fa-id-card"></i> Aadhaar: ${info.aadhar || 'N/A'}<br>`;
-    history += `<i class="fas fa-map-marker-alt"></i> Address: ${info.address || 'N/A'}<br>`;
-    history += `<i class="fas fa-signal"></i> Network Circle: ${info.circle || 'N/A'}<br><hr>`;
+    history += `📞 Phone          : ${info.num || '+91 ' + number}\n`;
+    history += `👤 Full Name      : ${info.name || 'N/A'}\n`;
+    history += `👨 Father's Name  : ${info.fname || 'N/A'}\n`;
+    history += `🆔 Aadhaar Number : ${info.aadhar || 'N/A'}\n`;
+    history += `📍 Address        : ${info.address || 'N/A'}\n`;
+    history += `📡 Network Circle : ${info.circle || 'N/A'}\n`;
 
+    history += `\n────────────────────────────────────\n\n`;
 });
-
 
 jsonBox.textContent = history;
     

@@ -1194,54 +1194,8 @@ function displayResults(number, data) {
         //const info = results[0];
         results.forEach((info,index) =>{
         //});
-        html += `
-<div class="document-card">
-    <h3>📄 Record ${index + 1}</h3>
-
-    <div class="result-item">
-        <span class="label">📱 Mobile Number</span>
-        <span class="value">${info.num || "+91 " + number}</span>
-    </div>
-
-    <div class="result-item">
-        <span class="label">👤 Name</span>
-        <span class="value">${info.name || "Not Available"}</span>
-    </div>
-
-    <div class="result-item">
-        <span class="label">👨 Father Name</span>
-        <span class="value">${info.fname || "Not Available"}</span>
-    </div>
-
-    <div class="result-item">
-        <span class="label">🆔 Aadhaar</span>
-        <span class="value">${info.aadhar || "Not Available"}</span>
-    </div>
-
-    <div class="result-item">
-        <span class="label">📍 Address</span>
-        <span class="value">${info.address || "Not Available"}</span>
-    </div>
-
-    <div class="result-item">
-        <span class="label">📡 Network</span>
-        <span class="value">${info.circle || "Not Available"}</span>
-    </div>
-
-    <div class="result-item">
-        <span class="label">📞 Alternate Number</span>
-        <span class="value">${info.alt || "Not Available"}</span>
-    </div>
-
-    <div class="result-item">
-        <span class="label">📧 Email</span>
-        <span class="value">${info.email || "Not Available"}</span>
-    </div>
-
-</div>
-});
 resultContent.innerHTML = html;
-//        jsonBox.innerHTML = html;
+jsonBox.innerHTML = html;
         
 
         

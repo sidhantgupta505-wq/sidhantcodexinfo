@@ -1199,7 +1199,7 @@ function displayResults(number, data) {
             
             <div class="result-item">
                 <span class="label"><i class="fas fa-phone"></i> Mobile Number</span>
-                <span class="value highlight">${info.num || '+91 ' + number}</span>
+                <span class="value highlight">${info.num || "Not Available"}</span>
             </div>
             
             <div class="result-item">
@@ -1239,9 +1239,8 @@ function displayResults(number, data) {
         </div>
         `;
     });
-    resultContent.innerHTML = html;
-    // jsonBox.innerHTML = html;
-        
+
+    resultContent.innerHTML = html; 
         html += `<div class="result-item">
             <span class="label"><i class="fas fa-phone"></i> Phone</span>
             <span class="value highlight">${info.num || '+91 ' + number}</span>

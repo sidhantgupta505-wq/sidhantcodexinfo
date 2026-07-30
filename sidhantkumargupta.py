@@ -1175,7 +1175,7 @@ function displayResults(number, data) {
     const apiInfo = document.getElementById('apiInfo');
     const jsonBox = document.getElementById('jsonBox');
     
-    //  jsonBox.textContent = JSON.stringify(data, null, 2);
+    jsonBox.textContent = JSON.stringify(data, null, 2);
     
     if (data.status === 'error') {
         resultBox.classList.remove('show');
@@ -1185,7 +1185,7 @@ function displayResults(number, data) {
     }
 
     if (data.result && data.result.length > 0) {
-    const results = data.result;
+    //const results = data.result;
         const totalRecords = results.length;
         
         recordCount.textContent = totalRecords;

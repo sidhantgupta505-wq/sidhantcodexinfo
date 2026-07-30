@@ -1191,8 +1191,8 @@ function displayResults(number, data) {
         recordCount.textContent = totalRecords;
         
         let html = '';
-       // const info = results[0]  
-        resultContent.innerHTML = html; 
+        const info = results[0]  
+        //resultContent.innerHTML = html; 
         html += `<div class="result-item">
             <span class="label"><i class="fas fa-phone"></i> Phone</span>
             <span class="value highlight">${info.num || '+91 ' + number}</span>

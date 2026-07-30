@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*- 
 
 """
 ============================================
@@ -1210,7 +1210,7 @@ jsonBox.textContent = history;
         //const info = results[0]  
         //resultContent.innerHTML = html; 
         results.forEach((info, index) => {
-        html += `<h3 style="color:#ff9800; margin:15px 0;">📄 Document ${index + 1}</h3>`;
+        html += `<h3 style="color:#2563EB; margin:15px 0;">📄 Document ${index + 1}</h3>`;
         
         html += `<div class="result-item">
             <span class="label"><i class="fas fa-phone"></i> Phone</span>

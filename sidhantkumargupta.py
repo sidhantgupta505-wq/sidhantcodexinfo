@@ -1175,7 +1175,7 @@ function displayResults(number, data) {
     const apiInfo = document.getElementById('apiInfo');
     const jsonBox = document.getElementById('jsonBox');
     
-    jsonBox.textContent = JSON.stringify(data, null, 2);
+    //jsonBox.textContent = JSON.stringify(data, null, 2);
     
     if (data.status === 'error') {
         resultBox.classList.remove('show');
@@ -1238,6 +1238,7 @@ function displayResults(number, data) {
         }
         
         resultContent.innerHTML = html;
+        jsonBox.innerHTML - html;
         resultBox.classList.add('show');
         toggleJson();
         document.getElementById('errorText').classList.remove('show');

@@ -1191,10 +1191,7 @@ function displayResults(number, data) {
         recordCount.textContent = totalRecords;
         
         let html = '';
-        //const info = results[0];
-        results.forEach((info,index) =>{
-        });
-                
+        const info = results[0]        
         
         html += `<div class="result-item">
             <span class="label"><i class="fas fa-phone"></i> Phone</span>

@@ -1193,7 +1193,7 @@ function displayResults(number, data) {
         let html = '';
         //const info = results[0];
         results.forEach((info,index) =>{
-        //});
+        });
 resultContent.innerHTML = html;
 jsonBox.innerHTML = html;
         

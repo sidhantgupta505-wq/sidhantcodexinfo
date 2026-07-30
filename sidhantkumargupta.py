@@ -1192,54 +1192,89 @@ function displayResults(number, data) {
         
         let html = '';
         //const info = results[0]  
-        results.forEach((info, index) => {
+       if (data.result && data.result.length > 0) {
+    const results = data.result;
+    const totalRecords = results.length;
+    
+    if (typeof recordCount !== 'undefined' && recordCount !== null) {
+        recordCount.textContent = totalRecords;
+    }
+    
+    let html = '';
+    
+    // Yahan loop bilkul sahi tarike se shuru hoga
+    results.forEach((info, index) => {
         html += `
-        <div class="document-card">
-            <h3>📄 Record ${index + 1}</h3>
+        <div class="document-card" style="margin-bottom: 20px; border: 1px solid #1e293b; padding: 15px; border-radius: 10px; background-color: #0b0f19;">
+            <h3 style="color: #38bdf8; margin-bottom: 12px;">📄 Document ${index + 1}</h3>
             
             <div class="result-item">
-                <span class="label"><i class="fas fa-phone"></i> Mobile Number</span>
-                <span class="value highlight">${info.num || "Not Available"}</span>
+                <span class="label"><i class="fas fa-phone"></i> Phone</span>
+                <span class="value highlight">${info.num || 'N/A'}</span>
             </div>
             
             <div class="result-item">
-                <span class="label"><i class="fas fa-user"></i> Name</span>
-                <span class="value">${info.name || "Not Available"}</span>
+                <span class="label"><i class="fas fa-user"></i> Full Name</span>
+                <span class="value highlight">${info.name || 'N/A'}</span>
             </div>
             
             <div class="result-item">
-                <span class="label"><i class="fas fa-user-tie"></i> Father Name</span>
-                <span class="value">${info.fname || "Not Available"}</span>
+                <span class="label"><i class="fas fa-user-tie"></i> Father's Name</span>
+                <span class="value">${info.fname || 'N/A'}</span>
             </div>
             
             <div class="result-item">
-                <span class="label"><i class="fas fa-id-card"></i> Aadhaar</span>
-                <span class="value">${info.aadhaar || "Not Available"}</span>
+                <span class="label"><i class="fas fa-id-card"></i> Aadhaar Number</span>
+                <span class="value green">${info.aadhaar || 'N/A'}</span>
             </div>
             
             <div class="result-item">
                 <span class="label"><i class="fas fa-map-pin"></i> Address</span>
-                <span class="value">${info.address || "Not Available"}</span>
+                <span class="value address">${info.address || 'N/A'}</span>
             </div>
             
             <div class="result-item">
-                <span class="label"><i class="fas fa-signal"></i> Network</span>
-                <span class="value">${info.circle || "Not Available"}</span>
+                <span class="label"><i class="fas fa-signal"></i> Network Circle</span>
+                <span class="value">${info.circle || 'N/A'}</span>
             </div>
-            
+        `;
+
+        if (info.alt) {
+            html += `
             <div class="result-item">
-                <span class="label"><i class="fas fa-phone-alt"></i> Alternate Number</span>
-                <span class="value">${info.alt || "Not Available"}</span>
+                <span class="label"><i class="fas fa-phone-plus"></i> Alternate Number</span>
+                <span class="value">${info.alt}</span>
             </div>
-            
+            `;
+        }
+
+        if (info.email) {
+            html += `
             <div class="result-item">
                 <span class="label"><i class="fas fa-envelope"></i> Email</span>
-                <span class="value">${info.email || "Not Available"}</span>
+                <span class="value">${info.email}</span>
             </div>
-        </div>
-        `;
-    });
+            `;
+        }
 
+        html += `</div>`; // Document card div close
+    }); // <-- Loop yahan properly band ho raha hai
+
+    resultContent.innerHTML = html;
+    // jsonBox.innerHTML = html;
+    
+    if (typeof resultBox !== 'undefined' && resultBox !== null) {
+        resultBox.classList.add('show');
+    }
+    if (typeof toggleJson === 'function') {
+        toggleJson();
+    }
+    
+    const errorTextElem = document.getElementById('errorText');
+    if (errorTextElem) {
+        errorTextElem.classList.remove('show');
+    }
+}
     resultContent.innerHTML = html; 
         html += `<div class="result-item">
             <span class="label"><i class="fas fa-phone"></i> Phone</span>

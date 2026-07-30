@@ -1182,14 +1182,26 @@ let history = '';
 
 data.result.forEach((info, index) => {
 
-    history += `<i class="fas fa-file-alt"></i> <b>Document ${index + 1}</b><br>`;
-    history += `<i class="fas fa-phone"></i> Phone: ${info.num || '+91 ' + number}<br>`;
-    history += `<i class="fas fa-user"></i> Full Name: ${info.name || 'N/A'}<br>`;
-    history += `<i class="fas fa-user-tie"></i> Father's Name: ${info.fname || 'N/A'}<br>`;
-    history += `<i class="fas fa-id-card"></i> Aadhaar: ${info.aadhar || 'N/A'}<br>`;
-    history += `<i class="fas fa-map-marker-alt"></i> Address: ${info.address || 'N/A'}<br>`;
-    history += `<i class="fas fa-signal"></i> Network Circle: ${info.circle || 'N/A'}<br><hr>`;
+    history += `<div style="padding:12px; margin-bottom:15px; border:1px solid #333; border-radius:10px;">`;
 
+    history += `<h3 style="color:#2563EB;"><i class="fas fa-file-alt"></i> Document ${index + 1}</h3>`;
+
+    history += `<p><i class="fas fa-phone"></i> <b>Phone:</b> ${info.num || '+91 ' + number}</p>`;
+    history += `<p><i class="fas fa-user"></i> <b>Full Name:</b> ${info.name || 'N/A'}</p>`;
+    history += `<p><i class="fas fa-user-tie"></i> <b>Father's Name:</b> ${info.fname || 'N/A'}</p>`;
+    history += `<p><i class="fas fa-id-card"></i> <b>Aadhaar:</b> ${info.aadhar || 'N/A'}</p>`;
+    history += `<p><i class="fas fa-map-marker-alt"></i> <b>Address:</b> ${info.address || 'N/A'}</p>`;
+    history += `<p><i class="fas fa-signal"></i> <b>Network Circle:</b> ${info.circle || 'N/A'}</p>`;
+
+    if (info.alt) {
+        history += `<p><i class="fas fa-phone-alt"></i> <b>Alternate:</b> ${info.alt}</p>`;
+    }
+
+    if (info.email) {
+        history += `<p><i class="fas fa-envelope"></i> <b>Email:</b> ${info.email}</p>`;
+    }
+
+    history += `</div>`;
 });
 
 jsonBox.textContent = history;

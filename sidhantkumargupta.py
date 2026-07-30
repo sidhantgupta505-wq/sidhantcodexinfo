@@ -1191,8 +1191,11 @@ function displayResults(number, data) {
         recordCount.textContent = totalRecords;
         
         let html = '';
-        const info = results[0]  
+        //const info = results[0]  
         //resultContent.innerHTML = html; 
+        results.forEach((info, index) => {
+        html += `<h3 style="color:#ff9800; margin:15px 0;">📄 Document ${index + 1}</h3>`;
+        
         html += `<div class="result-item">
             <span class="label"><i class="fas fa-phone"></i> Phone</span>
             <span class="value highlight">${info.num || '+91 ' + number}</span>
@@ -1236,6 +1239,7 @@ function displayResults(number, data) {
                 <span class="value">${info.email}</span>
             </div>`;
         }
+        });
         
         resultContent.innerHTML = html;
         //jsonBox.innerHTML = html;

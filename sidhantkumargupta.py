@@ -1238,7 +1238,7 @@ function displayResults(number, data) {
         }
         
         resultContent.innerHTML = html;
-        jsonBox.innerHTML = html;
+        //jsonBox.innerHTML = html;
         resultBox.classList.add('show');
         toggleJson();
         document.getElementById('errorText').classList.remove('show');

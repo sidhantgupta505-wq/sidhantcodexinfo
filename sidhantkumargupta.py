@@ -1181,14 +1181,15 @@ function displayResults(number, data) {
 let history = '';
 
 data.result.forEach((info, index) => {
-    history += `--------------------\n`;
-    history += `Document: ${index + 1}\n`;
-    history += `Phone: ${info.num || '+91 ' + number}\n`;
-    history += `Name: ${info.name || 'N/A'}\n`;
-    history += `Father-name: ${info.fname || 'N/A'}\n`;
-    history += `Aadhaar: ${info.aadhar || 'N/A'}\n`;
-    history += `Address: ${info.address || 'N/A'}\n`;
-    history += `Network Circle: ${info.circle || 'N/A'}\n\n`;
+
+    history += `<i class="fas fa-file-alt"></i> <b>Document ${index + 1}</b><br>`;
+    history += `<i class="fas fa-phone"></i> Phone: ${info.num || '+91 ' + number}<br>`;
+    history += `<i class="fas fa-user"></i> Full Name: ${info.name || 'N/A'}<br>`;
+    history += `<i class="fas fa-user-tie"></i> Father's Name: ${info.fname || 'N/A'}<br>`;
+    history += `<i class="fas fa-id-card"></i> Aadhaar: ${info.aadhar || 'N/A'}<br>`;
+    history += `<i class="fas fa-map-marker-alt"></i> Address: ${info.address || 'N/A'}<br>`;
+    history += `<i class="fas fa-signal"></i> Network Circle: ${info.circle || 'N/A'}<br><hr>`;
+
 });
 
 jsonBox.textContent = history;

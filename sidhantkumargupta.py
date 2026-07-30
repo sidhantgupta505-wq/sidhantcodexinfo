@@ -1183,9 +1183,9 @@ function displayResults(number, data) {
         document.getElementById('errorText').classList.add('show');
         return;
     }
-    
+
     if (data.result && data.result.length > 0) {
-        const results = data.result;
+    const results = data.result;
         const totalRecords = results.length;
         
         recordCount.textContent = totalRecords;
@@ -1239,10 +1239,9 @@ function displayResults(number, data) {
     </div>
 
 </div>
-`;
 });
 resultContent.innerHTML = html;
-        jsonBox.innerHTML = html;
+//        jsonBox.innerHTML = html;
         
 
         

@@ -1185,7 +1185,7 @@ function displayResults(number, data) {
     }
 
     if (data.result && data.result.length > 0) {
-    //const results = data.result;
+    const results = data.result;
         const totalRecords = results.length;
         
         recordCount.textContent = totalRecords;

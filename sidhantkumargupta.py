@@ -1194,11 +1194,7 @@ function displayResults(number, data) {
         //const info = results[0];
         results.forEach((info,index) =>{
         });
-resultContent.innerHTML = html;
-jsonBox.innerHTML = html;
-        
-
-        
+                
         
         html += `<div class="result-item">
             <span class="label"><i class="fas fa-phone"></i> Phone</span>

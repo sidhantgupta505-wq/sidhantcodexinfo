@@ -1334,6 +1334,11 @@ async function searchNumber() {
         
        // if (data.status === 'success' && data.result && data.result.length > 0) {
             //statusText.textContent = '✅ Search completed (' + data.result.length + ' records found)';
+            const results = data.result.filter((item, index, arr) =>
+    index === arr.findIndex(x =>
+        (x.num || '') === (item.num || '')
+    )
+);
             statusText.textContent = '✅ Search completed (' + results.length + ' record' + (results.length > 1 ? 's' : '') + ' found)';
             statusDot.className = 'dot';
         } else if (data.status === 'error') {

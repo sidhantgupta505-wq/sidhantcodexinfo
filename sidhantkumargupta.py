@@ -1191,6 +1191,7 @@ uniqueResults.forEach((info, index) => {
     history += `╔════════════════════════════╗\n`;
     history += `║      📄 DOCUMENT ${index + 1}      ║\n`;
     history += `╚════════════════════════════╝\n\n`;
+    history += `✅ VERIFIED RECORD\n\n`;
 
     history += `📞 Phone          : ${info.num || '+91 ' + number}\n`;
     history += `☎️ Alternate Number : ${info.alt || 'N/A'}\n`;

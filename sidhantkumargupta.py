@@ -1194,12 +1194,10 @@ uniqueResults.forEach((info, index) => {
     history += `🛡️ VERIFIED RECORD\n`;
     history += `Status : SUCCESS ✅\n\n`;
 
-    history += `🆔 Aadhaar Number : ${info.aadhar || 'N/A'}\n`;
-    history += `👤 Full Name      : ${info.name || 'N/A'}\n`;
-    history += `👨 Father's Name  : ${info.fname || 'N/A'}\n`;
-    history += `📞 Phone          : ${info.num || '+91 ' + number}\n`;
-
-    if (info.alt) {
+    history += `🆔 Aadhaar Number   : ${info.aadhar || 'N/A'}\n`;
+    history += `👤 Full Name : ${(info.name || 'N/A').replace(/\s+/g, ' ').trim()}\n`;
+    history += `👨 Father's Name : ${(info.fname || 'N/A').replace(/\s+/g, ' ').trim()}\n`;
+    history += `📞 Phone            : ${info.num || '+91 ' + number}\n`;
     history += `☎️ Alternate Number : ${info.alt || 'N/A'}\n`;
 }
     history += `📍 Address        : ${info.address || 'N/A'}\n`;

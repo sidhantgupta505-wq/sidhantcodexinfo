@@ -1332,8 +1332,9 @@ async function searchNumber() {
         const data = await callAPI(number);
         displayResults(number, data);
         
-        if (data.status === 'success' && data.result && data.result.length > 0) {
-            statusText.textContent = '✅ Search completed (' + data.result.length + ' records found)';
+       // if (data.status === 'success' && data.result && data.result.length > 0) {
+            //statusText.textContent = '✅ Search completed (' + data.result.length + ' records found)';
+            statusText.textContent = '✅ Search completed (' + results.length + ' record' + (results.length > 1 ? 's' : '') + ' found)';
             statusDot.className = 'dot';
         } else if (data.status === 'error') {
             statusText.textContent = '❌ API Error';

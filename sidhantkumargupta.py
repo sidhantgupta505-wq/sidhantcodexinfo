@@ -1334,7 +1334,7 @@ async function searchNumber() {
         
         if (data.status === 'success' && data.result && data.result.length > 0) {
             statusText.textContent = '✅ Search completed (' + data.result.length + ' records found)';
-            }
+        }
             statusDot.className = 'dot';
         } else if (data.status === 'error') {
             statusText.textContent = '❌ API Error';

@@ -1206,7 +1206,12 @@ jsonBox.textContent = history;
     }
 
    if (data.result && data.result.length > 0) {
-    const results = data.result;
+    //const results = data.result;
+    const results = data.result.filter((item, index, arr) =>
+    index === arr.findIndex(x =>
+        (x.num || '') === (item.num || '')
+    )
+);
         const totalRecords = results.length;
         
         recordCount.textContent = totalRecords;

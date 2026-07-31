@@ -1181,8 +1181,7 @@ function displayResults(number, data) {
 
 let history = '';
 
-//data.result.forEach((info, index) => {
-results.forEach((info, index) => {
+data.result.forEach((info, index) => {
     history += `╔════════════════════════════╗\n`;
     history += `║      📄 DOCUMENT ${index + 1}      ║\n`;
     history += `╚════════════════════════════╝\n\n`;

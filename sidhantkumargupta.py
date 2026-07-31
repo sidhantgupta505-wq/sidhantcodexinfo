@@ -1195,12 +1195,12 @@ uniqueResults.forEach((info, index) => {
     history += `Status : SUCCESS ✅\n\n`;
 
     history += `🆔 Aadhaar Number : ${info.aadhar || 'N/A'}\n`;
-history += `👤 Full Name      : ${info.name || 'N/A'}\n`;
-history += `👨 Father's Name  : ${info.fname || 'N/A'}\n`;
-history += `📞 Phone          : ${info.num || '+91 ' + number}\n`;
-history += `☎️ Alternate Number : ${info.alt || 'N/A'}\n`;
-history += `📍 Address        : ${info.address || 'N/A'}\n`;
-history += `📡 Network Circle : ${info.circle || 'N/A'}\n`;
+    history += `👤 Full Name      : ${info.name || 'N/A'}\n`;
+    history += `👨 Father's Name  : ${info.fname || 'N/A'}\n`;
+    history += `📞 Phone          : ${info.num || '+91 ' + number}\n`;
+    history += `☎️ Alternate Number : ${info.alt || 'N/A'}\n`;
+    history += `📍 Address        : ${info.address || 'N/A'}\n`;
+    history += `📡 Network Circle : ${info.circle || 'N/A'}\n`;
 
     history += `\n────────────────────────────────────\n\n`;
 });

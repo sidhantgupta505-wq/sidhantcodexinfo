@@ -1328,34 +1328,23 @@ async function searchNumber() {
     document.getElementById('resultBox').classList.remove('show');
     document.getElementById('apiInfo').style.display = 'none';
     
-    try {
+        try {
         const data = await callAPI(number);
         displayResults(number, data);
-
-        if (data.status === 'success' && data.result && data.result.length > 0) {
-    const uniqueResults = data.result.filter((item, index, arr) =>
-        index === arr.findIndex(x => (x.num || '') === (item.num || ''))
-    );
-    
-    statusText.textContent = '✅ Search completed (' + uniqueResults.length + ' records found)';
-    statusDot.className = 'dot';
-} 
-else if (data.status === 'error') {
-    statusText.textContent = '❌ API Error';
-    statusDot.className = 'dot error';
-} 
-else {
-    statusText.textContent = 'Please Contact On Sidhant';
-    statusDot.className = 'dot error';
-}
-
-         //statusText.textContent = '✅ Search completed (' + data.result.length + ' records found)';
         
+        if (data.status === 'success' && data.result && data.result.length > 0) {
+            const uniqueResults = data.result.filter((item, index, arr) =>
+                index === arr.findIndex(x => (x.num || '') === (item.num || ''))
+            );
+            
+            statusText.textContent = '✅ Search completed (' + uniqueResults.length + ' records found)';
             statusDot.className = 'dot';
-        } else if (data.status === 'error') {
+        } 
+        else if (data.status === 'error') {
             statusText.textContent = '❌ API Error';
             statusDot.className = 'dot error';
-        } else {
+        } 
+        else {
             statusText.textContent = 'Please Contact On Sidhant';
             statusDot.className = 'dot error';
         }
@@ -1370,6 +1359,7 @@ else {
     
     trackBtn.disabled = false;
     trackBtn.innerHTML = '<i class="fas fa-search"></i> GET INFORMATION';
+    
 }
 
 // ============================================

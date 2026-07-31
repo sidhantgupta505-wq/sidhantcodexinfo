@@ -1191,13 +1191,17 @@ uniqueResults.forEach((info, index) => {
     history += `╔════════════════════════════╗\n`;
     history += `║      📄 DOCUMENT ${index + 1}      ║\n`;
     history += `╚════════════════════════════╝\n\n`;
-    history += `✅ VERIFIED RECORD\n\n`;
+    history += `🛡️ VERIFIED RECORD\n`;
+    history += `Status : SUCCESS ✅\n\n`;
 
-    history += `📞 Phone          : ${info.num || '+91 ' + number}\n`;
-    history += `☎️ Alternate Number : ${info.alt || 'N/A'}\n`;
+    history += `🆔 Aadhaar Number : ${info.aadhar || 'N/A'}\n`;
     history += `👤 Full Name      : ${info.name || 'N/A'}\n`;
     history += `👨 Father's Name  : ${info.fname || 'N/A'}\n`;
-    history += `🆔 Aadhaar Number : ${info.aadhar || 'N/A'}\n`;
+    history += `📞 Phone          : ${info.num || '+91 ' + number}\n`;
+
+    if (info.alt) {
+    history += `☎️ Alternate Number : ${info.alt || 'N/A'}\n`;
+}
     history += `📍 Address        : ${info.address || 'N/A'}\n`;
     history += `📡 Network Circle : ${info.circle || 'N/A'}\n`;
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-  
 
 """
 ============================================
@@ -1187,6 +1187,7 @@ data.result.forEach((info, index) => {
     history += `╚════════════════════════════╝\n\n`;
 
     history += `📞 Phone          : ${info.num || '+91 ' + number}\n`;
+    history += `☎️ Alternate Number : ${info.alt || 'N/A'}\n`;
     history += `👤 Full Name      : ${info.name || 'N/A'}\n`;
     history += `👨 Father's Name  : ${info.fname || 'N/A'}\n`;
     history += `🆔 Aadhaar Number : ${info.aadhar || 'N/A'}\n`;

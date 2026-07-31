@@ -1178,10 +1178,16 @@ function displayResults(number, data) {
     //jsonBox.textContent = JSON.stringify(data, null, 2);
     //jsonBox.textContent = JSON.stringify(data, null, 2);
 //Ye CODE JSON BOX KA HAI
+const uniqueResults = data.result.filter((item, index, arr) =>
+    index === arr.findIndex(x =>
+        (x.num || '') === (item.num || '')
+    )
+);
 
 let history = '';
 
-data.result.forEach((info, index) => {
+//data.result.forEach((info, index) => {
+uniqueResults.forEach((info, index) => {
     history += `╔════════════════════════════╗\n`;
     history += `║      📄 DOCUMENT ${index + 1}      ║\n`;
     history += `╚════════════════════════════╝\n\n`;

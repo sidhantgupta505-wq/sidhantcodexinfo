@@ -89,8 +89,14 @@ def clear_logs():
 # ============================================
 # API CONFIGURATION
 # ============================================
-API_URL = "https://exploitsindia.site/osint/api.php"
-API_KEY = "anish-exploits"
+#API_URL = "https://exploitsindia.site/osint/api.php"
+#API_KEY = "anish-exploits"
+# ==========================================
+# API CONFIGURATION
+# ==========================================
+API_KEY = "num_live_qEInvACjj28cvWquylmOqE4fg2MmZvAESdd71EFI"
+API_URL = "https://api.numlookupapi.com/v1/validate/"
+
 
 
 # ============================================

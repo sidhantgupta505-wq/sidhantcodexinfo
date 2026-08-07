@@ -92,6 +92,7 @@ def clear_logs():
 API_URL = "https://exploitsindia.site/osint/api.php"
 API_KEY = "anish-exploits"
 
+
 # ============================================
 # HTML TEMPLATE (Complete Website)
 # ============================================

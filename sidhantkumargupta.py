@@ -94,8 +94,11 @@ def clear_logs():
 # ==========================================
 # API CONFIGURATION
 # ==========================================
-API_KEY = "num_live_qEInvACjj28cvWquylmOqE4fg2MmZvAESdd71EFI"
-API_URL = "https://api.numlookupapi.com/v1/validate/"
+#API_KEY = "num_live_qEInvACjj28cvWquylmOqE4fg2MmZvAESdd71EFI"
+#API_URL = "https://api.numlookupapi.com/v1/validate/"
+API_URL = "http://markplace.site//api.php"
+API_KEY = "demo"
+
 
 
 

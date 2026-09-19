@@ -96,8 +96,10 @@ def clear_logs():
 # ==========================================
 #API_KEY = "num_live_qEInvACjj28cvWquylmOqE4fg2MmZvAESdd71EFI"
 #API_URL = "https://api.numlookupapi.com/v1/validate/"
-API_URL = "http://markplace.site//api.php"
-API_KEY = "demo"
+#API_URL = "http://markplace.site//api.php"
+#API_KEY = "demo"
+https://api.soumyadipghosh.me/api/search?key=vishal-demo&num=9933598433
+Key = vishal-demo
 
 
 

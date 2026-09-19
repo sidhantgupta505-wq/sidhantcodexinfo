@@ -98,7 +98,8 @@ def clear_logs():
 #API_URL = "https://api.numlookupapi.com/v1/validate/"
 #API_URL = "http://markplace.site//api.php"
 #API_KEY = "demo"
-f"https://api.soumyadipghosh.me/api/search?key={key}&num={number}"
+API_KEY = "vishal-demo"
+API_URL = "https://api.soumyadipghosh.me/api/search"
 
 
 
